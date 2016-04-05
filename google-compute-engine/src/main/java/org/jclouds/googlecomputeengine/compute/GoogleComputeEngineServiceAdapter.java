@@ -22,13 +22,7 @@ import static com.google.common.collect.Iterables.contains;
 import static com.google.common.collect.Iterables.filter;
 import static com.google.common.collect.Iterables.tryFind;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
-import static org.jclouds.googlecomputeengine.GoogleComputeEngineConstants.CENTOS_PROJECT;
-import static org.jclouds.googlecomputeengine.GoogleComputeEngineConstants.DEBIAN_PROJECT;
-import static org.jclouds.googlecomputeengine.GoogleComputeEngineConstants.GCE_BOOT_DISK_SUFFIX;
-import static org.jclouds.googlecomputeengine.GoogleComputeEngineConstants.GCE_DELETE_BOOT_DISK_METADATA_KEY;
-import static org.jclouds.googlecomputeengine.GoogleComputeEngineConstants.GCE_IMAGE_METADATA_KEY;
-import static org.jclouds.googlecomputeengine.GoogleComputeEngineConstants.OPERATION_COMPLETE_INTERVAL;
-import static org.jclouds.googlecomputeengine.GoogleComputeEngineConstants.OPERATION_COMPLETE_TIMEOUT;
+import static org.jclouds.googlecomputeengine.GoogleComputeEngineConstants.*;
 import static org.jclouds.googlecomputeengine.domain.Instance.NetworkInterface.AccessConfig.Type;
 import static org.jclouds.googlecomputeengine.predicates.InstancePredicates.isBootDisk;
 import static org.jclouds.util.Predicates2.retry;
@@ -286,15 +280,30 @@ public class GoogleComputeEngineServiceAdapter implements ComputeServiceAdapter<
               .addAll(api.getImageApiForProject(userProject.get()).list().concat())
               .addAll(api.getImageApiForProject(DEBIAN_PROJECT).list().concat())
               .addAll(api.getImageApiForProject(CENTOS_PROJECT).list().concat())
+              .addAll(api.getImageApiForProject(UBUNTU_PROJECT).list().concat())
+              .addAll(api.getImageApiForProject(GOOGLE_CONTAINERS_PROJECT).list().concat())
+              .addAll(api.getImageApiForProject(RHEL_PROJECT).list().concat())
+              .addAll(api.getImageApiForProject(CORE_OS_PROJECT).list().concat())
+              .addAll(api.getImageApiForProject(OPENSUSE_PROJECT).list().concat())
+              .addAll(api.getImageApiForProject(SUSE_PROJECT).list().concat())
+              .addAll(api.getImageApiForProject(WINDOWS_PROJECT).list().concat())
               .build();
    }
 
    @Override
    public Image getImage(String id) {
-      return Objects.firstNonNull(api.getImageApiForProject(userProject.get()).get(id),
-                                  Objects.firstNonNull(api.getImageApiForProject(DEBIAN_PROJECT).get(id),
-                                          api.getImageApiForProject(CENTOS_PROJECT).get(id)));
-
+      Image image;
+      if ((image = api.getImageApiForProject(userProject.get()).get(id)) != null) return image;
+      if ((image = api.getImageApiForProject(DEBIAN_PROJECT).get(id)) != null) return image;
+      if ((image = api.getImageApiForProject(CENTOS_PROJECT).get(id)) != null) return image;
+      if ((image = api.getImageApiForProject(UBUNTU_PROJECT).get(id)) != null) return image;
+      if ((image = api.getImageApiForProject(GOOGLE_CONTAINERS_PROJECT).get(id)) != null) return image;
+      if ((image = api.getImageApiForProject(RHEL_PROJECT).get(id)) != null) return image;
+      if ((image = api.getImageApiForProject(CORE_OS_PROJECT).get(id)) != null) return image;
+      if ((image = api.getImageApiForProject(OPENSUSE_PROJECT).get(id)) != null) return image;
+      if ((image = api.getImageApiForProject(SUSE_PROJECT).get(id)) != null) return image;
+      if ((image = api.getImageApiForProject(WINDOWS_PROJECT).get(id)) != null) return image;
+      return null;
    }
 
    @Override

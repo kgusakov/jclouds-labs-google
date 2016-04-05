@@ -38,6 +38,20 @@ public interface GoogleComputeEngineConstants {
 
    public static final String DEBIAN_PROJECT = "debian-cloud";
 
+   public static final String UBUNTU_PROJECT = "ubuntu-os-cloud";
+
+   public static final String GOOGLE_CONTAINERS_PROJECT = "google-containers";
+
+   public static final String RHEL_PROJECT = "rhel-cloud";
+
+   public static final String CORE_OS_PROJECT = "coreos-cloud";
+
+   public static final String OPENSUSE_PROJECT = "opensuse-cloud";
+
+   public static final String SUSE_PROJECT = "suse-cloud";
+
+   public static final String WINDOWS_PROJECT = "windows-cloud";
+
    public static final String COMPUTE_SCOPE = "https://www.googleapis.com/auth/compute";
 
    public static final String COMPUTE_READONLY_SCOPE = "https://www.googleapis.com/auth/compute.readonly";
