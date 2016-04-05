@@ -22,13 +22,13 @@
   <parent>
     <groupId>org.apache.jclouds</groupId>
     <artifactId>jclouds-project</artifactId>
-    <version>1.7.4-SNAPSHOT</version>
+    <version>1.7.4-QUBELL-2015.12.16</version>
   </parent>
   <groupId>org.apache.jclouds.labs</groupId>
   <artifactId>jclouds-labs-google</artifactId>
   <packaging>pom</packaging>
   <name>Apache jclouds labs google</name>
-  <version>1.7.4-SNAPSHOT</version>
+  <version>1.7.4-QUBELL-2015.12.16</version>
   
   <scm>
     <connection>scm:git:https://git-wip-us.apache.org/repos/asf/jclouds-labs-google.git</connection>
@@ -38,7 +38,7 @@
   </scm>
 
   <properties>
-    <jclouds.version>1.7.3</jclouds.version>
+    <jclouds.version>1.7.4-QUBELL-2015.12.16</jclouds.version>
   </properties>
 
   <repositories>
